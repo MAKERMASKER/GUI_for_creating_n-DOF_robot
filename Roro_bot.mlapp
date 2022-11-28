@@ -1,0 +1,1025 @@
+classdef ROROBot < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                     matlab.ui.Figure
+        TabGroup                     matlab.ui.container.TabGroup
+        CreateRobotDHTable           matlab.ui.container.Tab
+        var6CheckBox                 matlab.ui.control.CheckBox
+        var5CheckBox                 matlab.ui.control.CheckBox
+        var4CheckBox                 matlab.ui.control.CheckBox
+        var3CheckBox                 matlab.ui.control.CheckBox
+        var2CheckBox                 matlab.ui.control.CheckBox
+        var1CheckBox                 matlab.ui.control.CheckBox
+        DOFEditField                 matlab.ui.control.NumericEditField
+        DOFEditFieldLabel            matlab.ui.control.Label
+        maximumDvalueEditField       matlab.ui.control.NumericEditField
+        maximumDvalueEditFieldLabel  matlab.ui.control.Label
+        minimumDvalueEditField       matlab.ui.control.NumericEditField
+        minimumDvalueEditFieldLabel  matlab.ui.control.Label
+        CreateRobotButton            matlab.ui.control.Button
+        alpha6EditField              matlab.ui.control.NumericEditField
+        alpha6EditFieldLabel         matlab.ui.control.Label
+        a6EditField                  matlab.ui.control.NumericEditField
+        a6EditFieldLabel             matlab.ui.control.Label
+        d6EditField                  matlab.ui.control.NumericEditField
+        d6EditFieldLabel             matlab.ui.control.Label
+        t6EditField                  matlab.ui.control.NumericEditField
+        t6EditFieldLabel             matlab.ui.control.Label
+        q6Label                      matlab.ui.control.Label
+        alpha5EditField              matlab.ui.control.NumericEditField
+        alpha5EditFieldLabel         matlab.ui.control.Label
+        a5EditField                  matlab.ui.control.NumericEditField
+        a5EditFieldLabel             matlab.ui.control.Label
+        d5EditField                  matlab.ui.control.NumericEditField
+        d5EditFieldLabel             matlab.ui.control.Label
+        t5EditField                  matlab.ui.control.NumericEditField
+        t5EditFieldLabel             matlab.ui.control.Label
+        q5Label                      matlab.ui.control.Label
+        alpha4EditField              matlab.ui.control.NumericEditField
+        alpha4EditFieldLabel         matlab.ui.control.Label
+        a4EditField                  matlab.ui.control.NumericEditField
+        a4EditFieldLabel             matlab.ui.control.Label
+        d4EditField                  matlab.ui.control.NumericEditField
+        d4EditFieldLabel             matlab.ui.control.Label
+        t4EditField                  matlab.ui.control.NumericEditField
+        t4EditFieldLabel             matlab.ui.control.Label
+        q4Label                      matlab.ui.control.Label
+        alpha3EditField              matlab.ui.control.NumericEditField
+        alpha3EditFieldLabel         matlab.ui.control.Label
+        a3EditField                  matlab.ui.control.NumericEditField
+        a3EditFieldLabel             matlab.ui.control.Label
+        d3EditField                  matlab.ui.control.NumericEditField
+        d3EditFieldLabel             matlab.ui.control.Label
+        t3EditField                  matlab.ui.control.NumericEditField
+        t3EditFieldLabel             matlab.ui.control.Label
+        q3Label                      matlab.ui.control.Label
+        alpha2EditField              matlab.ui.control.NumericEditField
+        alpha2EditFieldLabel         matlab.ui.control.Label
+        a2EditField                  matlab.ui.control.NumericEditField
+        a2EditFieldLabel             matlab.ui.control.Label
+        d2EditField                  matlab.ui.control.NumericEditField
+        d2EditFieldLabel             matlab.ui.control.Label
+        t2EditField                  matlab.ui.control.NumericEditField
+        t2EditFieldLabel             matlab.ui.control.Label
+        q2Label                      matlab.ui.control.Label
+        alpha1EditField              matlab.ui.control.NumericEditField
+        alpha1EditFieldLabel         matlab.ui.control.Label
+        a1EditField                  matlab.ui.control.NumericEditField
+        a1EditFieldLabel             matlab.ui.control.Label
+        d1EditField                  matlab.ui.control.NumericEditField
+        d1EditFieldLabel             matlab.ui.control.Label
+        t1EditField                  matlab.ui.control.NumericEditField
+        t1EditFieldLabel             matlab.ui.control.Label
+        q1Label                      matlab.ui.control.Label
+        UITable                      matlab.ui.control.Table
+        ForwardKinematicsTab         matlab.ui.container.Tab
+        responseEditField            matlab.ui.control.EditField
+        responseEditFieldLabel       matlab.ui.control.Label
+        ForwardKinematicsButton      matlab.ui.control.Button
+        Panel                        matlab.ui.container.Panel
+        SETButton                    matlab.ui.control.Button
+        q6EditField                  matlab.ui.control.NumericEditField
+        q6EditFieldLabel             matlab.ui.control.Label
+        q5EditField                  matlab.ui.control.NumericEditField
+        q5EditFieldLabel             matlab.ui.control.Label
+        q4EditField                  matlab.ui.control.NumericEditField
+        q4EditFieldLabel             matlab.ui.control.Label
+        q3EditField                  matlab.ui.control.NumericEditField
+        q3EditFieldLabel             matlab.ui.control.Label
+        q2EditField                  matlab.ui.control.NumericEditField
+        q2EditFieldLabel             matlab.ui.control.Label
+        q1EditField                  matlab.ui.control.NumericEditField
+        q1EditFieldLabel             matlab.ui.control.Label
+        UIAxes                       matlab.ui.control.UIAxes
+        WorkspaceGeneratorTab        matlab.ui.container.Tab
+        WorkSpaceButton              matlab.ui.control.Button
+        Panel2                       matlab.ui.container.Panel
+        Workspace_intervalEditField  matlab.ui.control.NumericEditField
+        Workspace_intervalEditFieldLabel  matlab.ui.control.Label
+        Pleaseinputvaluesfrom100to1000Label  matlab.ui.control.Label
+        UIAxes3                      matlab.ui.control.UIAxes
+        InverseKinematicsTab         matlab.ui.container.Tab
+        InverseKinematicsPanel       matlab.ui.container.Panel
+        zCoordinateEditField         matlab.ui.control.NumericEditField
+        zCoordinateEditFieldLabel    matlab.ui.control.Label
+        yCoordinateEditField         matlab.ui.control.NumericEditField
+        yCoordinateEditFieldLabel    matlab.ui.control.Label
+        xCoordinateEditField         matlab.ui.control.NumericEditField
+        xCoordinateEditFieldLabel    matlab.ui.control.Label
+        InverseKinematicsButton      matlab.ui.control.Button
+        UIAxes2                      matlab.ui.control.UIAxes
+    end
+
+
+    properties (Access = private)
+        % Description
+        Th
+        Th1
+        Th2
+        Th3
+        Th4
+        Th5
+        Th6
+
+        a
+        a1
+        a2
+        a3
+        a4
+        a5
+        a6
+
+        alpha
+        alpha1
+        alpha2
+        alpha3
+        alpha4
+        alpha5
+        alpha6
+
+        d
+        d1
+        d2
+        d3
+        d4
+        d5
+        d6
+
+        q0
+        q0T
+        q
+        q1
+        q2
+        q3
+        q4
+        q5
+        q6
+
+        CheckVarD
+        CheckVarD1
+        CheckVarD2
+        CheckVarD3
+        CheckVarD4
+        CheckVarD5
+        CheckVarD6
+
+        DOF
+        DofAv
+        DofT
+        varDof
+
+        minValD
+        maxValD
+
+        qHandle
+        qFinal
+        QMAT
+
+        xCord
+        yCord
+        zCord
+
+        timeInt
+        workspaceInt
+
+        taDH
+        Robot
+    end
+
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Button pushed function: ForwardKinematicsButton
+        function ForwardKinematicsButtonPushed(app, event)
+            %             app.Th1 = 'innn';
+            %             app.testEditField.Value = app.Th1;
+            %             app.test2EditField.Value = app.Th1;
+
+            %             DH(1) = Link([app.Th1 app.d1 app.a1 app.alpha1]);
+            %             DH(2) = Link([app.Th2 app.d2 app.a2 app.alpha2]);
+            %             DH(3) = Link([app.Th3 app.d3 app.a3 app.alpha3]);
+            %             DH(4) = Link([app.Th4 app.d4 app.a4 app.alpha4]);
+            %             DH(5) = Link([app.Th5 app.d5 app.a5 app.alpha5]);
+            %             DH(6) = Link([app.Th6 app.d6 app.a6 app.alpha6]);
+            Dof = app.DOFEditField.Value;
+            Dflag = 0;
+            W = [-100 100 -100 100 -100 100];
+            for i=1:Dof
+                if(app.CheckVarD(i)==1)
+                    Dflag =1;
+                    app.responseEditField.Value = 'd';
+                    DH(i) = Link([app.Th(i) app.d(i) app.a(i) app.alpha(i) 1]);
+                    DH(i).qlim = [app.minValD app.maxValD];
+                else
+                    app.responseEditField.Value = 'no d';
+                    DH(i) = Link([app.Th(i) app.d(i) app.a(i) app.alpha(i) 0]);
+                end
+            end
+
+            app.qHandle = zeros(Dof);
+            %             app.q0T = [];
+            %             app.DofAv = [1 1 1 1 1 1];
+            %             app.DofT = [];
+            %
+            for j = 1: Dof
+                app.qHandle(j) = app.q(j);
+                %                 app.q0T(j) = app.q0(j);
+                %                 app.DofT(j) = app.DofAv(j);
+            end
+            app.taDH = DH;
+            if Dflag == 0
+                app.Robot = SerialLink(DH);
+                app.Robot.teach();
+                app.Robot.fkine(app.qHandle);
+                %                 Robot.fkine([(app.q1);(app.q2);(app.q3);(app.q4);(app.q5);(app.q6)]);
+                app.Robot.display();
+                %                 plot(app.UIAxes,Robot.fkine([app.q1 app.q2 app.q3 app.q4 app.q5 app.q6]));
+            else
+                app.Robot = SerialLink(DH);
+                app.Robot.teach();
+                app.Robot.fkine(app.qHandle,W);
+                %                 Robot.fkine([(app.q1);(app.q2);(app.q3);(app.q4);(app.q5);(app.q6)],W);
+                app.Robot.display();
+                %                 plot(app.UIAxes,Robot.fkine([app.q1 app.q2 app.q3 app.q4 app.q5 app.q6]));
+            end
+        end
+
+        % Button pushed function: CreateRobotButton
+        function CreateRobotButtonPushed(app, event)
+            app.DOF = app.DOFEditField.Value;
+
+            app.Th1 = app.t1EditField.Value;
+            app.Th2 = app.t2EditField.Value;
+            app.Th3 = app.t3EditField.Value;
+            app.Th4 = app.t4EditField.Value;
+            app.Th5 = app.t5EditField.Value;
+            app.Th6 = app.t6EditField.Value;
+
+            app.d1 = app.d1EditField.Value;
+            app.d2 = app.d2EditField.Value;
+            app.d3 = app.d3EditField.Value;
+            app.d4 = app.d4EditField.Value;
+            app.d5 = app.d5EditField.Value;
+            app.d6 = app.d6EditField.Value;
+
+            app.a1 = app.a1EditField.Value;
+            app.a2 = app.a2EditField.Value;
+            app.a3 = app.a3EditField.Value;
+            app.a4 = app.a4EditField.Value;
+            app.a5 = app.a5EditField.Value;
+            app.a6 = app.a6EditField.Value;
+
+            app.alpha1 = (app.alpha1EditField.Value)*pi/180;
+            app.alpha2 = (app.alpha2EditField.Value)*pi/180;
+            app.alpha3 = (app.alpha3EditField.Value)*pi/180;
+            app.alpha4 = (app.alpha4EditField.Value)*pi/180;
+            app.alpha5 = (app.alpha5EditField.Value)*pi/180;
+            app.alpha6 = (app.alpha6EditField.Value)*pi/180;
+
+            app.CheckVarD1 = app.var1CheckBox.Value;
+            app.CheckVarD2 = app.var2CheckBox.Value;
+            app.CheckVarD3 = app.var3CheckBox.Value;
+            app.CheckVarD4 = app.var4CheckBox.Value;
+            app.CheckVarD5 = app.var5CheckBox.Value;
+            app.CheckVarD6 = app.var6CheckBox.Value;
+
+            app.maxValD = app.maximumDvalueEditField.Value;
+            app.minValD = app.minimumDvalueEditField.Value;
+
+            app.Th = [app.Th1,app.Th2,app.Th3,app.Th4,app.Th5,app.Th6];
+            app.alpha = [app.alpha1,app.alpha2,app.alpha3,app.alpha4,app.alpha5,app.alpha6];
+            app.d = [app.d1,app.d2,app.d3,app.d4,app.d5,app.d6];
+            app.a = [app.a1,app.a2,app.a3,app.a4,app.a5,app.a6];
+
+            app.CheckVarD = [app.CheckVarD1,app.CheckVarD2,app.CheckVarD3,app.CheckVarD4,app.CheckVarD5,app.CheckVarD6];
+        end
+
+        % Button pushed function: SETButton
+        function SETButtonPushed(app, event)
+            app.q1 = (app.q1EditField.Value)*pi/180;
+            app.q2 = (app.q2EditField.Value)*pi/180;
+            app.q3 = (app.q3EditField.Value)*pi/180;
+            app.q4 = (app.q4EditField.Value)*pi/180;
+            app.q5 = (app.q5EditField.Value)*pi/180;
+            app.q6 = (app.q6EditField.Value)*pi/180;
+            app.q = [app.q1,app.q2,app.q3,app.q4,app.q5,app.q6];
+            app.q0 = [0 0 0 0 0 0];
+        end
+
+        % Button pushed function: InverseKinematicsButton
+        function InverseKinematicsButtonPushed(app, event)
+            if app.DOF == 6
+                for i = 1:app.DOF
+                    app.q0T(i) = app.q(i);
+                end
+                %             app.q0T = zeros(app.DOF);
+                app.q0T = app.q0T(1,:);
+                app.DofAv = ones(app.DOF);
+                app.DofAv = app.DofAv(1,:);
+                %             app.varDof = 6 - app.DOF;
+                %             minusDof = zeros(app.varDof);
+                %             minusDof = minusDof(1,:);
+                %             app.DofAv = [app.DofAv,minusDof];
+                %             app.q0T = [app.q0T minusDof];
+                disp('app.q0T');
+                disp(app.q0T);
+                disp('app.DofAv');
+                disp(app.DofAv);
+
+                app.xCord = app.xCoordinateEditField.Value;
+                app.yCord = app.yCoordinateEditField.Value;
+                app.zCord = app.zCoordinateEditField.Value;
+                app.q0TvalEditField.Value = length(app.q0T);
+                app.DofTvalEditField.Value = length(app.DofAv);
+                Tf = [1 0 0 0;0 1 0 0; 0 0 1 0; 0 0 0 0] + [0 0 0 app.xCord; 0 0 0 app.yCord; 0 0 0 app.zCord; 0 0 0 1];
+
+            else
+                for i = 1:app.DOF
+                    app.q0T(i) = app.q(i);
+                end
+                %             app.q0T = zeros(app.DOF);
+                app.q0T = app.q0T(1,:);
+                app.DofAv = ones(app.DOF);
+                app.DofAv = app.DofAv(1,:);
+                app.varDof = 6 - app.DOF;
+                minusDof = zeros(app.varDof);
+                minusDof = minusDof(1,:);
+                app.DofAv = [app.DofAv,minusDof];
+                %             app.q0T = [app.q0T minusDof];
+                disp('app.q0T');
+                disp(app.q0T);
+                disp('app.DofAv');
+                disp(app.DofAv);
+
+                app.xCord = app.xCoordinateEditField.Value;
+                app.yCord = app.yCoordinateEditField.Value;
+                app.zCord = app.zCoordinateEditField.Value;
+                %                 app.q0TvalEditField.Value = length(app.q0T);
+                %                 app.DofTvalEditField.Value = length(app.DofAv);
+                Tf = [1 0 0 0;0 1 0 0; 0 0 1 0; 0 0 0 0] + [0 0 0 app.xCord; 0 0 0 app.yCord; 0 0 0 app.zCord; 0 0 0 1];
+            end
+            %             if app.DOF == 6
+            %                 disp('In 6 Dofs');
+            %                 app.qFinal = app.Robot.ikine6s(Tf);
+            %                 app.timeInt = 0:0.15:3;
+            %                 app.QMAT = jtraj(app.q0T,app.qFinal,app.timeInt);
+            %                 Tr = fkine(app.Robot,app.QMAT);
+            %                 for i = 1:length(app.timeInt)
+            %                     TMat = Tr(i)
+            %                     traMat = transl(TMat);
+            %                     xCordIL(i) = traMat(1);
+            %                     yCordIL(i) = traMat(2);
+            %                     zCordIL(i) = traMat(3);
+            %                 end
+            %                 plot(app.Robot,app.QMAT);
+            %                 hold on
+            %                 plot3(xCordIL,yCordIL,zCordIL,'Color',[1 0 0],'LineWidth',2);
+            %             else
+            app.qFinal = app.Robot.ikine(Tf,app.q0T,'mask',app.DofAv);
+            disp('app.qFinal');
+            disp(app.qFinal);
+
+            app.timeInt = 0:0.15:3;
+            app.QMAT = jtraj(app.q0T,app.qFinal,app.timeInt);
+            Tr = fkine(app.Robot,app.QMAT);
+            for i = 1:length(app.timeInt)
+                TMat = Tr(i)
+                traMat = transl(TMat);
+                xCordIL(i) = traMat(1);
+                yCordIL(i) = traMat(2);
+                zCordIL(i) = traMat(3);
+            end
+            plot(app.Robot,app.QMAT);
+            hold on
+            plot3(xCordIL,yCordIL,zCordIL,'Color',[1 0 0],'LineWidth',2);
+            %                 plot3(xCordIL,yCordIL,zCordIL);
+            %             end
+        end
+
+        % Button pushed function: WorkSpaceButton
+        function WorkSpaceButtonPushed(app, event)
+            %             W_Interval = app.Workspace_intervalEditField.Value;
+
+            dth_min = -180;
+            dth_max = 180;
+
+            LocalDOF = app.DOF;
+            %               ResultTRMAT = app.Robot.fkine(randi([dth_min dth_max],LocalDOF,1))
+            IntervalSet= 1:1:200;
+            LocalQ = jtraj(app.q0T,(randi([dth_min dth_max],LocalDOF,1)),IntervalSet);
+            LocalTRMAT = fkine(app.Robot,LocalQ);
+
+            for i=1:length(IntervalSet)
+
+                localTR =  LocalTRMAT(i);
+                Ttaken = transl(localTR);
+                size(localTR)
+                disp('localTR')
+                disp(localTR)
+                xplot(i) = Ttaken(1);
+                yplot(i) = Ttaken(2);
+                zplot(i) = Ttaken(3);
+                scatter3(xplot(i), yplot(i), zplot(i), 50, 'MarkerFaceColor', [1 0 0], 'MarkerEdgeColor', 'k');
+                hold on
+
+            end
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.Position = [100 100 640 480];
+            app.UIFigure.Name = 'MATLAB App';
+
+            % Create TabGroup
+            app.TabGroup = uitabgroup(app.UIFigure);
+            app.TabGroup.Position = [1 1 640 480];
+
+            % Create CreateRobotDHTable
+            app.CreateRobotDHTable = uitab(app.TabGroup);
+            app.CreateRobotDHTable.Title = 'Create Robot - DH Table';
+
+            % Create UITable
+            app.UITable = uitable(app.CreateRobotDHTable);
+            app.UITable.ColumnName = {'q'; 'theta'; 'd'; 'a'; 'alpha'};
+            app.UITable.RowName = {};
+            app.UITable.Position = [21 78 596 368];
+
+            % Create q1Label
+            app.q1Label = uilabel(app.CreateRobotDHTable);
+            app.q1Label.Position = [34 384 25 22];
+            app.q1Label.Text = 'q1';
+
+            % Create t1EditFieldLabel
+            app.t1EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.t1EditFieldLabel.HorizontalAlignment = 'right';
+            app.t1EditFieldLabel.Position = [81 384 28 22];
+            app.t1EditFieldLabel.Text = 't1';
+
+            % Create t1EditField
+            app.t1EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.t1EditField.Position = [121 384 30 22];
+
+            % Create d1EditFieldLabel
+            app.d1EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.d1EditFieldLabel.HorizontalAlignment = 'right';
+            app.d1EditFieldLabel.Position = [200 384 28 22];
+            app.d1EditFieldLabel.Text = 'd1';
+
+            % Create d1EditField
+            app.d1EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.d1EditField.Position = [240 384 30 22];
+            app.d1EditField.Value = 10;
+
+            % Create a1EditFieldLabel
+            app.a1EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.a1EditFieldLabel.HorizontalAlignment = 'right';
+            app.a1EditFieldLabel.Position = [358 385 28 22];
+            app.a1EditFieldLabel.Text = 'a1';
+
+            % Create a1EditField
+            app.a1EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.a1EditField.Position = [398 385 30 22];
+            app.a1EditField.Value = 100;
+
+            % Create alpha1EditFieldLabel
+            app.alpha1EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.alpha1EditFieldLabel.HorizontalAlignment = 'right';
+            app.alpha1EditFieldLabel.Position = [475 385 42 22];
+            app.alpha1EditFieldLabel.Text = 'alpha1';
+
+            % Create alpha1EditField
+            app.alpha1EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.alpha1EditField.Position = [529 385 30 22];
+
+            % Create q2Label
+            app.q2Label = uilabel(app.CreateRobotDHTable);
+            app.q2Label.Position = [33 322 25 22];
+            app.q2Label.Text = 'q2';
+
+            % Create t2EditFieldLabel
+            app.t2EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.t2EditFieldLabel.HorizontalAlignment = 'right';
+            app.t2EditFieldLabel.Position = [80 322 28 22];
+            app.t2EditFieldLabel.Text = 't2';
+
+            % Create t2EditField
+            app.t2EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.t2EditField.Position = [120 322 30 22];
+
+            % Create d2EditFieldLabel
+            app.d2EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.d2EditFieldLabel.HorizontalAlignment = 'right';
+            app.d2EditFieldLabel.Position = [199 322 28 22];
+            app.d2EditFieldLabel.Text = 'd2';
+
+            % Create d2EditField
+            app.d2EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.d2EditField.Position = [239 322 30 22];
+
+            % Create a2EditFieldLabel
+            app.a2EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.a2EditFieldLabel.HorizontalAlignment = 'right';
+            app.a2EditFieldLabel.Position = [357 323 28 22];
+            app.a2EditFieldLabel.Text = 'a2';
+
+            % Create a2EditField
+            app.a2EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.a2EditField.Position = [397 323 30 22];
+            app.a2EditField.Value = 100;
+
+            % Create alpha2EditFieldLabel
+            app.alpha2EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.alpha2EditFieldLabel.HorizontalAlignment = 'right';
+            app.alpha2EditFieldLabel.Position = [474 323 42 22];
+            app.alpha2EditFieldLabel.Text = 'alpha2';
+
+            % Create alpha2EditField
+            app.alpha2EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.alpha2EditField.Position = [528 323 30 22];
+
+            % Create q3Label
+            app.q3Label = uilabel(app.CreateRobotDHTable);
+            app.q3Label.Position = [33 262 25 22];
+            app.q3Label.Text = 'q3';
+
+            % Create t3EditFieldLabel
+            app.t3EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.t3EditFieldLabel.HorizontalAlignment = 'right';
+            app.t3EditFieldLabel.Position = [80 262 28 22];
+            app.t3EditFieldLabel.Text = 't3';
+
+            % Create t3EditField
+            app.t3EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.t3EditField.Position = [120 262 30 22];
+
+            % Create d3EditFieldLabel
+            app.d3EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.d3EditFieldLabel.HorizontalAlignment = 'right';
+            app.d3EditFieldLabel.Position = [199 262 28 22];
+            app.d3EditFieldLabel.Text = 'd3';
+
+            % Create d3EditField
+            app.d3EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.d3EditField.Position = [239 262 30 22];
+            app.d3EditField.Value = 30;
+
+            % Create a3EditFieldLabel
+            app.a3EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.a3EditFieldLabel.HorizontalAlignment = 'right';
+            app.a3EditFieldLabel.Position = [357 263 28 22];
+            app.a3EditFieldLabel.Text = 'a3';
+
+            % Create a3EditField
+            app.a3EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.a3EditField.Position = [397 263 30 22];
+            app.a3EditField.Value = 100;
+
+            % Create alpha3EditFieldLabel
+            app.alpha3EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.alpha3EditFieldLabel.HorizontalAlignment = 'right';
+            app.alpha3EditFieldLabel.Position = [474 263 42 22];
+            app.alpha3EditFieldLabel.Text = 'alpha3';
+
+            % Create alpha3EditField
+            app.alpha3EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.alpha3EditField.Position = [528 263 30 22];
+            app.alpha3EditField.Value = 90;
+
+            % Create q4Label
+            app.q4Label = uilabel(app.CreateRobotDHTable);
+            app.q4Label.Position = [34 202 25 22];
+            app.q4Label.Text = 'q4';
+
+            % Create t4EditFieldLabel
+            app.t4EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.t4EditFieldLabel.HorizontalAlignment = 'right';
+            app.t4EditFieldLabel.Position = [81 202 28 22];
+            app.t4EditFieldLabel.Text = 't4';
+
+            % Create t4EditField
+            app.t4EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.t4EditField.Position = [121 202 30 22];
+
+            % Create d4EditFieldLabel
+            app.d4EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.d4EditFieldLabel.HorizontalAlignment = 'right';
+            app.d4EditFieldLabel.Position = [200 202 28 22];
+            app.d4EditFieldLabel.Text = 'd4';
+
+            % Create d4EditField
+            app.d4EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.d4EditField.Position = [240 202 30 22];
+            app.d4EditField.Value = 10;
+
+            % Create a4EditFieldLabel
+            app.a4EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.a4EditFieldLabel.HorizontalAlignment = 'right';
+            app.a4EditFieldLabel.Position = [358 203 28 22];
+            app.a4EditFieldLabel.Text = 'a4';
+
+            % Create a4EditField
+            app.a4EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.a4EditField.Position = [398 203 30 22];
+            app.a4EditField.Value = 100;
+
+            % Create alpha4EditFieldLabel
+            app.alpha4EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.alpha4EditFieldLabel.HorizontalAlignment = 'right';
+            app.alpha4EditFieldLabel.Position = [475 203 42 22];
+            app.alpha4EditFieldLabel.Text = 'alpha4';
+
+            % Create alpha4EditField
+            app.alpha4EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.alpha4EditField.Position = [529 203 30 22];
+
+            % Create q5Label
+            app.q5Label = uilabel(app.CreateRobotDHTable);
+            app.q5Label.Position = [34 145 25 22];
+            app.q5Label.Text = 'q5';
+
+            % Create t5EditFieldLabel
+            app.t5EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.t5EditFieldLabel.HorizontalAlignment = 'right';
+            app.t5EditFieldLabel.Position = [81 145 28 22];
+            app.t5EditFieldLabel.Text = 't5';
+
+            % Create t5EditField
+            app.t5EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.t5EditField.Position = [121 145 30 22];
+
+            % Create d5EditFieldLabel
+            app.d5EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.d5EditFieldLabel.HorizontalAlignment = 'right';
+            app.d5EditFieldLabel.Position = [200 145 28 22];
+            app.d5EditFieldLabel.Text = 'd5';
+
+            % Create d5EditField
+            app.d5EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.d5EditField.Position = [240 145 30 22];
+            app.d5EditField.Value = 40;
+
+            % Create a5EditFieldLabel
+            app.a5EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.a5EditFieldLabel.HorizontalAlignment = 'right';
+            app.a5EditFieldLabel.Position = [358 146 28 22];
+            app.a5EditFieldLabel.Text = 'a5';
+
+            % Create a5EditField
+            app.a5EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.a5EditField.Position = [398 146 30 22];
+            app.a5EditField.Value = 100;
+
+            % Create alpha5EditFieldLabel
+            app.alpha5EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.alpha5EditFieldLabel.HorizontalAlignment = 'right';
+            app.alpha5EditFieldLabel.Position = [475 146 42 22];
+            app.alpha5EditFieldLabel.Text = 'alpha5';
+
+            % Create alpha5EditField
+            app.alpha5EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.alpha5EditField.Position = [529 146 30 22];
+
+            % Create q6Label
+            app.q6Label = uilabel(app.CreateRobotDHTable);
+            app.q6Label.Position = [33 91 25 22];
+            app.q6Label.Text = 'q6';
+
+            % Create t6EditFieldLabel
+            app.t6EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.t6EditFieldLabel.HorizontalAlignment = 'right';
+            app.t6EditFieldLabel.Position = [80 91 28 22];
+            app.t6EditFieldLabel.Text = 't6';
+
+            % Create t6EditField
+            app.t6EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.t6EditField.Position = [120 91 30 22];
+
+            % Create d6EditFieldLabel
+            app.d6EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.d6EditFieldLabel.HorizontalAlignment = 'right';
+            app.d6EditFieldLabel.Position = [199 91 28 22];
+            app.d6EditFieldLabel.Text = 'd6';
+
+            % Create d6EditField
+            app.d6EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.d6EditField.Position = [239 91 30 22];
+
+            % Create a6EditFieldLabel
+            app.a6EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.a6EditFieldLabel.HorizontalAlignment = 'right';
+            app.a6EditFieldLabel.Position = [357 92 28 22];
+            app.a6EditFieldLabel.Text = 'a6';
+
+            % Create a6EditField
+            app.a6EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.a6EditField.Position = [397 92 30 22];
+            app.a6EditField.Value = 100;
+
+            % Create alpha6EditFieldLabel
+            app.alpha6EditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.alpha6EditFieldLabel.HorizontalAlignment = 'right';
+            app.alpha6EditFieldLabel.Position = [474 92 42 22];
+            app.alpha6EditFieldLabel.Text = 'alpha6';
+
+            % Create alpha6EditField
+            app.alpha6EditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.alpha6EditField.Position = [528 92 30 22];
+            app.alpha6EditField.Value = 90;
+
+            % Create CreateRobotButton
+            app.CreateRobotButton = uibutton(app.CreateRobotDHTable, 'push');
+            app.CreateRobotButton.ButtonPushedFcn = createCallbackFcn(app, @CreateRobotButtonPushed, true);
+            app.CreateRobotButton.Position = [272 21 100 23];
+            app.CreateRobotButton.Text = 'Create Robot';
+
+            % Create minimumDvalueEditFieldLabel
+            app.minimumDvalueEditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.minimumDvalueEditFieldLabel.HorizontalAlignment = 'right';
+            app.minimumDvalueEditFieldLabel.Position = [413 42 98 22];
+            app.minimumDvalueEditFieldLabel.Text = 'minimum D value';
+
+            % Create minimumDvalueEditField
+            app.minimumDvalueEditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.minimumDvalueEditField.Position = [521 42 39 22];
+
+            % Create maximumDvalueEditFieldLabel
+            app.maximumDvalueEditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.maximumDvalueEditFieldLabel.HorizontalAlignment = 'right';
+            app.maximumDvalueEditFieldLabel.Position = [408 11 102 22];
+            app.maximumDvalueEditFieldLabel.Text = 'maximum D value';
+
+            % Create maximumDvalueEditField
+            app.maximumDvalueEditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.maximumDvalueEditField.Position = [520 11 39 22];
+            app.maximumDvalueEditField.Value = 100;
+
+            % Create DOFEditFieldLabel
+            app.DOFEditFieldLabel = uilabel(app.CreateRobotDHTable);
+            app.DOFEditFieldLabel.HorizontalAlignment = 'right';
+            app.DOFEditFieldLabel.Position = [81 32 31 22];
+            app.DOFEditFieldLabel.Text = 'DOF';
+
+            % Create DOFEditField
+            app.DOFEditField = uieditfield(app.CreateRobotDHTable, 'numeric');
+            app.DOFEditField.Position = [131 32 63 22];
+            app.DOFEditField.Value = 6;
+
+            % Create var1CheckBox
+            app.var1CheckBox = uicheckbox(app.CreateRobotDHTable);
+            app.var1CheckBox.Text = 'var1';
+            app.var1CheckBox.Position = [299 384 45 22];
+
+            % Create var2CheckBox
+            app.var2CheckBox = uicheckbox(app.CreateRobotDHTable);
+            app.var2CheckBox.Text = 'var2';
+            app.var2CheckBox.Position = [299 322 45 22];
+
+            % Create var3CheckBox
+            app.var3CheckBox = uicheckbox(app.CreateRobotDHTable);
+            app.var3CheckBox.Text = 'var3';
+            app.var3CheckBox.Position = [299 262 45 22];
+
+            % Create var4CheckBox
+            app.var4CheckBox = uicheckbox(app.CreateRobotDHTable);
+            app.var4CheckBox.Text = 'var4';
+            app.var4CheckBox.Position = [299 202 45 22];
+
+            % Create var5CheckBox
+            app.var5CheckBox = uicheckbox(app.CreateRobotDHTable);
+            app.var5CheckBox.Text = 'var5';
+            app.var5CheckBox.Position = [299 145 45 22];
+
+            % Create var6CheckBox
+            app.var6CheckBox = uicheckbox(app.CreateRobotDHTable);
+            app.var6CheckBox.Text = 'var6';
+            app.var6CheckBox.Position = [299 92 45 22];
+
+            % Create ForwardKinematicsTab
+            app.ForwardKinematicsTab = uitab(app.TabGroup);
+            app.ForwardKinematicsTab.Title = 'Forward Kinematics';
+
+            % Create UIAxes
+            app.UIAxes = uiaxes(app.ForwardKinematicsTab);
+            title(app.UIAxes, 'THE VIEW')
+            xlabel(app.UIAxes, 'X')
+            ylabel(app.UIAxes, 'Y')
+            zlabel(app.UIAxes, 'Z')
+            app.UIAxes.Position = [131 73 500 359];
+
+            % Create Panel
+            app.Panel = uipanel(app.ForwardKinematicsTab);
+            app.Panel.Title = 'Panel';
+            app.Panel.Position = [23 75 102 321];
+
+            % Create q1EditFieldLabel
+            app.q1EditFieldLabel = uilabel(app.Panel);
+            app.q1EditFieldLabel.HorizontalAlignment = 'right';
+            app.q1EditFieldLabel.Position = [12 252 25 22];
+            app.q1EditFieldLabel.Text = 'q1';
+
+            % Create q1EditField
+            app.q1EditField = uieditfield(app.Panel, 'numeric');
+            app.q1EditField.Position = [52 252 38 17];
+
+            % Create q2EditFieldLabel
+            app.q2EditFieldLabel = uilabel(app.Panel);
+            app.q2EditFieldLabel.HorizontalAlignment = 'right';
+            app.q2EditFieldLabel.Position = [12 211 25 22];
+            app.q2EditFieldLabel.Text = 'q2';
+
+            % Create q2EditField
+            app.q2EditField = uieditfield(app.Panel, 'numeric');
+            app.q2EditField.Position = [52 211 38 17];
+
+            % Create q3EditFieldLabel
+            app.q3EditFieldLabel = uilabel(app.Panel);
+            app.q3EditFieldLabel.HorizontalAlignment = 'right';
+            app.q3EditFieldLabel.Position = [12 174 25 22];
+            app.q3EditFieldLabel.Text = 'q3';
+
+            % Create q3EditField
+            app.q3EditField = uieditfield(app.Panel, 'numeric');
+            app.q3EditField.Position = [52 174 38 17];
+
+            % Create q4EditFieldLabel
+            app.q4EditFieldLabel = uilabel(app.Panel);
+            app.q4EditFieldLabel.HorizontalAlignment = 'right';
+            app.q4EditFieldLabel.Position = [12 135 25 22];
+            app.q4EditFieldLabel.Text = 'q4';
+
+            % Create q4EditField
+            app.q4EditField = uieditfield(app.Panel, 'numeric');
+            app.q4EditField.Position = [52 135 38 17];
+
+            % Create q5EditFieldLabel
+            app.q5EditFieldLabel = uilabel(app.Panel);
+            app.q5EditFieldLabel.HorizontalAlignment = 'right';
+            app.q5EditFieldLabel.Position = [12 94 25 22];
+            app.q5EditFieldLabel.Text = 'q5';
+
+            % Create q5EditField
+            app.q5EditField = uieditfield(app.Panel, 'numeric');
+            app.q5EditField.Position = [52 94 38 17];
+
+            % Create q6EditFieldLabel
+            app.q6EditFieldLabel = uilabel(app.Panel);
+            app.q6EditFieldLabel.HorizontalAlignment = 'right';
+            app.q6EditFieldLabel.Position = [12 55 25 22];
+            app.q6EditFieldLabel.Text = 'q6';
+
+            % Create q6EditField
+            app.q6EditField = uieditfield(app.Panel, 'numeric');
+            app.q6EditField.Position = [52 55 38 17];
+
+            % Create SETButton
+            app.SETButton = uibutton(app.Panel, 'push');
+            app.SETButton.ButtonPushedFcn = createCallbackFcn(app, @SETButtonPushed, true);
+            app.SETButton.Position = [19 12 66 23];
+            app.SETButton.Text = 'SET';
+
+            % Create ForwardKinematicsButton
+            app.ForwardKinematicsButton = uibutton(app.ForwardKinematicsTab, 'push');
+            app.ForwardKinematicsButton.ButtonPushedFcn = createCallbackFcn(app, @ForwardKinematicsButtonPushed, true);
+            app.ForwardKinematicsButton.Position = [269 11 122 23];
+            app.ForwardKinematicsButton.Text = 'Forward Kinematics';
+
+            % Create responseEditFieldLabel
+            app.responseEditFieldLabel = uilabel(app.ForwardKinematicsTab);
+            app.responseEditFieldLabel.HorizontalAlignment = 'right';
+            app.responseEditFieldLabel.Position = [240 42 55 22];
+            app.responseEditFieldLabel.Text = 'response';
+
+            % Create responseEditField
+            app.responseEditField = uieditfield(app.ForwardKinematicsTab, 'text');
+            app.responseEditField.Position = [310 42 100 22];
+
+            % Create WorkspaceGeneratorTab
+            app.WorkspaceGeneratorTab = uitab(app.TabGroup);
+            app.WorkspaceGeneratorTab.Title = 'Workspace Generator';
+
+            % Create UIAxes3
+            app.UIAxes3 = uiaxes(app.WorkspaceGeneratorTab);
+            title(app.UIAxes3, 'Title')
+            xlabel(app.UIAxes3, 'X')
+            ylabel(app.UIAxes3, 'Y')
+            zlabel(app.UIAxes3, 'Z')
+            app.UIAxes3.Position = [89 132 447 300];
+
+            % Create Panel2
+            app.Panel2 = uipanel(app.WorkspaceGeneratorTab);
+            app.Panel2.Title = 'Panel2';
+            app.Panel2.Position = [187 42 252 78];
+
+            % Create Pleaseinputvaluesfrom100to1000Label
+            app.Pleaseinputvaluesfrom100to1000Label = uilabel(app.Panel2);
+            app.Pleaseinputvaluesfrom100to1000Label.Position = [22 1 208 22];
+            app.Pleaseinputvaluesfrom100to1000Label.Text = 'Please input values from 100 to 1000 ';
+
+            % Create Workspace_intervalEditFieldLabel
+            app.Workspace_intervalEditFieldLabel = uilabel(app.Panel2);
+            app.Workspace_intervalEditFieldLabel.HorizontalAlignment = 'right';
+            app.Workspace_intervalEditFieldLabel.Position = [19 30 111 22];
+            app.Workspace_intervalEditFieldLabel.Text = 'Workspace_interval';
+
+            % Create Workspace_intervalEditField
+            app.Workspace_intervalEditField = uieditfield(app.Panel2, 'numeric');
+            app.Workspace_intervalEditField.Position = [145 30 100 22];
+
+            % Create WorkSpaceButton
+            app.WorkSpaceButton = uibutton(app.WorkspaceGeneratorTab, 'push');
+            app.WorkSpaceButton.ButtonPushedFcn = createCallbackFcn(app, @WorkSpaceButtonPushed, true);
+            app.WorkSpaceButton.Position = [263 11 100 23];
+            app.WorkSpaceButton.Text = 'WorkSpace';
+
+            % Create InverseKinematicsTab
+            app.InverseKinematicsTab = uitab(app.TabGroup);
+            app.InverseKinematicsTab.Title = 'Inverse Kinematics';
+
+            % Create UIAxes2
+            app.UIAxes2 = uiaxes(app.InverseKinematicsTab);
+            title(app.UIAxes2, 'Title')
+            xlabel(app.UIAxes2, 'X')
+            ylabel(app.UIAxes2, 'Y')
+            zlabel(app.UIAxes2, 'Z')
+            app.UIAxes2.Position = [184 130 433 304];
+
+            % Create InverseKinematicsPanel
+            app.InverseKinematicsPanel = uipanel(app.InverseKinematicsTab);
+            app.InverseKinematicsPanel.Title = 'Inverse Kinematics';
+            app.InverseKinematicsPanel.Position = [11 187 162 221];
+
+            % Create InverseKinematicsButton
+            app.InverseKinematicsButton = uibutton(app.InverseKinematicsPanel, 'push');
+            app.InverseKinematicsButton.ButtonPushedFcn = createCallbackFcn(app, @InverseKinematicsButtonPushed, true);
+            app.InverseKinematicsButton.Position = [22 15 117 23];
+            app.InverseKinematicsButton.Text = 'Inverse Kinematics';
+
+            % Create xCoordinateEditFieldLabel
+            app.xCoordinateEditFieldLabel = uilabel(app.InverseKinematicsPanel);
+            app.xCoordinateEditFieldLabel.HorizontalAlignment = 'right';
+            app.xCoordinateEditFieldLabel.Position = [10 156 74 22];
+            app.xCoordinateEditFieldLabel.Text = 'x Coordinate';
+
+            % Create xCoordinateEditField
+            app.xCoordinateEditField = uieditfield(app.InverseKinematicsPanel, 'numeric');
+            app.xCoordinateEditField.Position = [99 156 54 22];
+
+            % Create yCoordinateEditFieldLabel
+            app.yCoordinateEditFieldLabel = uilabel(app.InverseKinematicsPanel);
+            app.yCoordinateEditFieldLabel.HorizontalAlignment = 'right';
+            app.yCoordinateEditFieldLabel.Position = [10 115 74 22];
+            app.yCoordinateEditFieldLabel.Text = 'y Coordinate';
+
+            % Create yCoordinateEditField
+            app.yCoordinateEditField = uieditfield(app.InverseKinematicsPanel, 'numeric');
+            app.yCoordinateEditField.Position = [99 115 54 22];
+
+            % Create zCoordinateEditFieldLabel
+            app.zCoordinateEditFieldLabel = uilabel(app.InverseKinematicsPanel);
+            app.zCoordinateEditFieldLabel.HorizontalAlignment = 'right';
+            app.zCoordinateEditFieldLabel.Position = [10 68 74 22];
+            app.zCoordinateEditFieldLabel.Text = 'z Coordinate';
+
+            % Create zCoordinateEditField
+            app.zCoordinateEditField = uieditfield(app.InverseKinematicsPanel, 'numeric');
+            app.zCoordinateEditField.Position = [99 68 54 22];
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = ROROBot
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
