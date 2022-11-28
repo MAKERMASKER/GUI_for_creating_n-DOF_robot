@@ -1,4 +1,6 @@
-    % Properties that correspond to app components
+   classdef ROROBot < matlab.apps.AppBase
+   disp('Makermasker')
+   % Properties that correspond to app components
     properties (Access = public)
         UIFigure                     matlab.ui.Figure
         TabGroup                     matlab.ui.container.TabGroup
