@@ -4,7 +4,6 @@
 * Please install the toolbox and run the file ("starup_rvc.m") before running the application ("ROROBot.mlapp"). 
 
 # STEPS:
-* (All required values for the demonstration are preset into the application, But the user can edit the values for validation).
 * Please initiate the robotics toolbox by Peter Corke (Run startup_rvc.m).
   
 1) Now, Please run the matlab application.
