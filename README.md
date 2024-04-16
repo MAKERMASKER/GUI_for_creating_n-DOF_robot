@@ -4,7 +4,10 @@ Please install the ROBOTICS TOOLBOX by Peter Corke and run the file ("starup_rvc
 
 To download the robotics toolbox by Peter Corke, please visit: "https://petercorke.com/toolboxes/robotics-toolbox/".
 
-# STEPS: (All required values for the demonstration are preset into the application, But the user can edit the values for validation) Please initiate the robotics toolbox by Peter Corke (Run startup_rvc.m)
+# STEPS:
+* (All required values for the demonstration are preset into the application, But the user can edit the values for validation).
+* Please initiate the robotics toolbox by Peter Corke (Run startup_rvc.m).
+  
 1) Now, Please run the matlab application.
 2) You will be taken to the Create Robot tab. Please Click on the Create Robot button.
 3) Please switch to the Forward kinematics Tab. Please click on “SET” first and then click on Forward Kinematics. (The generated robot will appear). 
