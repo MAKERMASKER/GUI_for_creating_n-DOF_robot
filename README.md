@@ -1,9 +1,8 @@
-# RoRo_bot
-Create n-DOF robot with functionalities like Forward kinematics, Inverse Kinematics, Workspae Generation
+# RoRo_bot - Create n-DOF robot with functionalities like Forward kinematics, Inverse Kinematics, Workspae Generation
 
-# Please install the ROBOTICS TOOLBOX by Peter Corke and run the file ("starup_rvc.m") before running the application ("ROROBot.mlapp"). 
+Please install the ROBOTICS TOOLBOX by Peter Corke and run the file ("starup_rvc.m") before running the application ("ROROBot.mlapp"). 
 
-# To download the robotics toolbox by Peter Corke, please visit: "https://petercorke.com/toolboxes/robotics-toolbox/".
+To download the robotics toolbox by Peter Corke, please visit: "https://petercorke.com/toolboxes/robotics-toolbox/".
 
 # STEPS: (All required values for the demonstration are preset into the application, But the user can edit the values for validation) Please initiate the robotics toolbox by Peter Corke (Run startup_rvc.m)
 1) Now, Please run the matlab application.
